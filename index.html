@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Halin</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #4f46e5;
+      --primary-light: #818cf8;
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: #334155;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary-light), #e879f9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, #f1f5f9 30%, var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(79, 70, 229, 0.4);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 6px 28px rgba(79, 70, 229, 0.55);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary-light);
+      color: var(--primary-light);
+    }
+
+    /* Cards */
+    .section {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--primary-light);
+      transform: translateY(-4px);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary-light), #e879f9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--primary-light);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span class="logo">Halin</span>
+    <nav>
+      <a href="#features">기능</a>
+      <a href="https://github.com/knuemeal16486/halin" target="_blank">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>환영합니다<br />Halin 프로젝트</h1>
+      <p>GitHub Pages로 배포된 웹페이지입니다. 이 프로젝트를 자유롭게 수정하고 발전시켜 보세요.</p>
+      <div class="btn-group">
+        <a href="https://github.com/knuemeal16486/halin" target="_blank" class="btn btn-primary">GitHub 보기</a>
+        <a href="#features" class="btn btn-outline">더 알아보기</a>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">정적 사이트</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">무료</div>
+        <div class="stat-label">GitHub Pages 호스팅</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">즉시</div>
+        <div class="stat-label">배포 가능</div>
+      </div>
+    </div>
+
+    <section class="section" id="features">
+      <h2 class="section-title">주요 특징</h2>
+      <p class="section-subtitle">GitHub Pages를 통해 빠르고 간편하게 웹사이트를 운영하세요.</p>
+      <div class="grid">
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>빠른 배포</h3>
+          <p>코드를 push하면 자동으로 GitHub Pages에 배포됩니다. 별도 서버 설정이 필요 없습니다.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔒</div>
+          <h3>무료 HTTPS</h3>
+          <p>GitHub Pages는 기본적으로 HTTPS를 제공합니다. 보안 연결이 자동 설정됩니다.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎨</div>
+          <h3>자유로운 커스터마이징</h3>
+          <p>HTML, CSS, JavaScript를 원하는 대로 수정해 나만의 사이트를 만들 수 있습니다.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made with ❤️ using <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> &mdash; <a href="https://github.com/knuemeal16486/halin" target="_blank">소스 코드 보기</a></p>
+  </footer>
+
+</body>
+</html>
